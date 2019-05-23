@@ -156,7 +156,7 @@ class TopicController extends Controller
      */
     public function search(Request $request)
     {
-        $topics = Voyage::where('name', 'Like', "%$request->name%")->orderBy('name','desc')->get(); 
+        $topics = Topic::where('name', 'Like', "%$request->search%")->orderBy('name','desc')->get(); 
 
         return view('index', ['topics' => $topics]);
     }
