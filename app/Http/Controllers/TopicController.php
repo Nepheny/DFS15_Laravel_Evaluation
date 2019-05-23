@@ -9,6 +9,11 @@ use Validator;
 
 class TopicController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('create', 'store', 'edit', 'update', 'destroy');
+    }
+
     /**
      * Display a listing of the resource.
      * CONSIGNE: liste tous les topic par ordre décroissant et affiche la vue index
