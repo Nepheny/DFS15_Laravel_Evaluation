@@ -6,6 +6,7 @@ use App\Topic;
 use App\Comment;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
 
 class TopicController extends Controller
 {
@@ -59,6 +60,7 @@ class TopicController extends Controller
         $topic = new Topic();
         $topic->name = $request->name;
         $topic->message = $request->message;
+        $topic->user_id = Auth::id();
         $topic->save();
 ;
         return redirect()->route('home')->with(["status" =>"Topic ajouté"]);

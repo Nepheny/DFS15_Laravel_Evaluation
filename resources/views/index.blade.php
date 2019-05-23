@@ -23,6 +23,8 @@
                 <h2><a href="{{ route('topics.show', ['topic' => $topic]) }}">{{ $topic->name }}</a></h2>
                     <p>{{ $topic->message }}</p>
                 </div>
+
+                @if(Auth::id() == $topic->user_id)
                 <div class="clearfix">
                     <form action="{{ route('topics.edit', ['topic' => $topic]) }}" method="GET" class="form">
                         @csrf
@@ -34,11 +36,13 @@
                         <div class="pull-right"><button class="btn btn-default" type="submit">Supprimer</button></div>
                     </form>
                 </div>
+                @endif
+
             </div>
             <div class="postinfo pull-left">
                 <div class="comments">
                     <div class="commentbg">
-                        560
+                        {{ count($topic->comments) }}
                         <div class="mark"></div>
                     </div>
                 </div>

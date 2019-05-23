@@ -65,7 +65,7 @@
                     <div class="posttext pull-left">
                         <div class="textwraper">
                             <div class="postreply">Post a Reply</div>
-                            <textarea name="message" id="reply" placeholder="Type your message here">{{ old('label') }}</textarea>
+                            <textarea name="message" id="reply" placeholder="Type your message here">{{ old('message') }}</textarea>
                         </div>
                     </div>
                     <div class="clearfix"></div>

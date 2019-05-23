@@ -31,11 +31,11 @@
                     <div class="posttext pull-left">
                         <div class="">
                             <div class="postreply">Poster un Topic</div>
-                            <input name="name" id="reply" placeholder="Votre titre">{{ old('label') }}</textarea>
+                            <input name="name" id="reply" placeholder="Votre titre">{{ old('name') }}</textarea>
                         </div>
 
                         <div class="textwraper">
-                            <textarea name="message" id="reply" placeholder="Votre message">{{ old('label') }}</textarea>
+                            <textarea name="message" id="reply" placeholder="Votre message">{{ old('message') }}</textarea>
                         </div>
                     </div>
                     <div class="clearfix"></div>
