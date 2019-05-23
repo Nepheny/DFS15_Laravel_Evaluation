@@ -37,7 +37,25 @@
                 <div class="container">
                     <div class="row">
                     <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="{{route('home')}}"><img src="{{asset('images/logo.jpg')}}" alt=""></a></div>
-                        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic"></div>
+                        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
+                            @auth
+                                <div class="pull-left txt">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        Se déconnecter
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                                <div class="clearfix"></div>
+                            @else
+                                <div class="pull-left txt"><a href="{{ route('login') }}">Se connecter</a></div>
+                                <div class="pull-right"><a href="{{ route('register') }}">S'inscrire</a></div>
+                                <div class="clearfix"></div>
+                            @endauth
+                        </div>
                         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
                             <div class="wrap">
                                 <form action="{{ route('recherche') }}" method="post" class="form">
