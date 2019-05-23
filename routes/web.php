@@ -53,5 +53,3 @@ Route::post('recherche', 'TopicController@search')->name('recherche');
  * Auth routes
  */
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

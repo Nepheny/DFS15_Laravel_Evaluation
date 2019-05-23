@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Topic;
 use App\Comment;
 use Illuminate\Http\Request;
+use Validator;
 
 class TopicController extends Controller
 {
@@ -55,7 +56,7 @@ class TopicController extends Controller
         $topic->message = $request->message;
         $topic->save();
 ;
-        return redirect()->route('topics.index')->with(["status" =>"Topic ajouté"]);
+        return redirect()->route('home')->with(["status" =>"Topic ajouté"]);
     }
 
     /**
@@ -67,7 +68,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        return view('show', ['topic' => $topic]);
     }
 
     /**
@@ -105,7 +106,7 @@ class TopicController extends Controller
         $topic->message = $request->message;
         $topic->save();
 ;
-        return redirect()->route('topics.index')->with(["status" =>"Topic modifié"]);
+        return redirect()->route('home')->with(["status" =>"Topic modifié"]);
     }
 
     /**
@@ -119,7 +120,7 @@ class TopicController extends Controller
     {
         $topic->delete();
 
-        return redirect()->route('topics.index')->with(["status" =>"Topic supprimé"]);
+        return redirect()->route('home')->with(["status" =>"Topic supprimé"]);
     }
 
     /**
@@ -127,10 +128,9 @@ class TopicController extends Controller
      * CONSIGNE: crée un Commentaire si le formulaire est correct et redirige vers la vue index
      *
      * @param  \App\Topic  $topic
-     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function comment(Request $request, int $id)
+    public function comment(Request $request)
     {
         $validator = Validator::make($request->all(), ['message' => 'required|string']);
 
@@ -140,8 +140,10 @@ class TopicController extends Controller
 
         $comment = new Comment();
         $comment->message = $request->message;
-        $comment->topic_id = $id;
+        $comment->topic_id = $request->id;
         $comment->save();
+
+        return redirect()->route('home')->with(["status" =>"Commentaire ajouté"]);
     }
 
     /**
